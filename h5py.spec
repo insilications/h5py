@@ -4,7 +4,7 @@
 #
 Name     : h5py
 Version  : 2.6.0
-Release  : 6
+Release  : 7
 URL      : https://pypi.python.org/packages/22/82/64dada5382a60471f85f16eb7d01cc1a9620aea855cd665609adf6fdbb0d/h5py-2.6.0.tar.gz
 Source0  : https://pypi.python.org/packages/22/82/64dada5382a60471f85f16eb7d01cc1a9620aea855cd665609adf6fdbb0d/h5py-2.6.0.tar.gz
 Summary  : Read and write HDF5 files from Python
@@ -19,6 +19,7 @@ BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python-dev
 BuildRequires : python-pkgconfig
+BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : six
 
@@ -38,11 +39,16 @@ python components for the h5py package.
 %setup -q -n h5py-2.6.0
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1485029504
 python2 setup.py build -b py2
+python3 setup.py build -b py3
 
 %install
+export SOURCE_DATE_EPOCH=1485029504
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 
 %files
 %defattr(-,root,root,-)
