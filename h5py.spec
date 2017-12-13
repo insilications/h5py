@@ -4,7 +4,7 @@
 #
 Name     : h5py
 Version  : 2.7.1
-Release  : 14
+Release  : 15
 URL      : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz
 Source0  : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz
 Summary  : Read and write HDF5 files from Python
