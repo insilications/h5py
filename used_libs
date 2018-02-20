@@ -2,5 +2,4 @@ libc.so.6
 libhdf5.so.10
 libhdf5_hl.so.10
 libpthread.so.0
-libpython2.7.so.1.0
 libpython3.6m.so.1.0
