@@ -6,7 +6,7 @@
 #
 Name     : h5py
 Version  : 2.7.1
-Release  : 28
+Release  : 29
 URL      : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz
 Source0  : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz
 Source99 : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz.asc
