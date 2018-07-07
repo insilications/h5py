@@ -5,15 +5,16 @@
 # Source0 file verified with key 0x57FA4540DD4EFCF7 (tcaswell@gmail.com)
 #
 Name     : h5py
-Version  : 2.7.1
-Release  : 29
-URL      : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz
-Source0  : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz
-Source99 : https://pypi.debian.net/h5py/h5py-2.7.1.tar.gz.asc
+Version  : 2.8.0
+Release  : 30
+URL      : https://pypi.debian.net/h5py/h5py-2.8.0.tar.gz
+Source0  : https://pypi.debian.net/h5py/h5py-2.8.0.tar.gz
+Source99 : https://pypi.debian.net/h5py/h5py-2.8.0.tar.gz.asc
 Summary  : Read and write HDF5 files from Python
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: h5py-python3
+Requires: h5py-license
 Requires: h5py-python
 Requires: numpy
 Requires: six
@@ -26,7 +27,6 @@ BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-
 BuildRequires : python-pkgconfig
 BuildRequires : python3-dev
 BuildRequires : setuptools
@@ -47,6 +47,14 @@ The h5py package provides both a high- and low-level interface to the HDF5
         Supports HDF5 versions 1.8.4 and higher.  On Windows, HDF5 is included with
         the installer.
 
+%package license
+Summary: license components for the h5py package.
+Group: Default
+
+%description license
+license components for the h5py package.
+
+
 %package python
 Summary: python components for the h5py package.
 Group: Default
@@ -66,18 +74,23 @@ python3 components for the h5py package.
 
 
 %prep
-%setup -q -n h5py-2.7.1
+%setup -q -n h5py-2.8.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519136671
+export SOURCE_DATE_EPOCH=1530997085
+find -name "*pyx" | xargs touch ||:
 python3 setup.py build -b py3
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/h5py
+cp docs/licenses.rst %{buildroot}/usr/share/doc/h5py/docs_licenses.rst
+cp lzf/LICENSE.txt %{buildroot}/usr/share/doc/h5py/lzf_LICENSE.txt
+cp licenses/license.txt %{buildroot}/usr/share/doc/h5py/licenses_license.txt
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -85,6 +98,12 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/h5py/docs_licenses.rst
+/usr/share/doc/h5py/licenses_license.txt
+/usr/share/doc/h5py/lzf_LICENSE.txt
 
 %files python
 %defattr(-,root,root,-)
