@@ -6,7 +6,7 @@
 #
 Name     : h5py
 Version  : 2.9.0
-Release  : 38
+Release  : 39
 URL      : https://files.pythonhosted.org/packages/43/27/a6e7dcb8ae20a4dbf3725321058923fec262b6f7835179d78ccc8d98deec/h5py-2.9.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/43/27/a6e7dcb8ae20a4dbf3725321058923fec262b6f7835179d78ccc8d98deec/h5py-2.9.0.tar.gz
 Source99 : https://files.pythonhosted.org/packages/43/27/a6e7dcb8ae20a4dbf3725321058923fec262b6f7835179d78ccc8d98deec/h5py-2.9.0.tar.gz.asc
@@ -78,11 +78,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545507720
+export SOURCE_DATE_EPOCH=1551726848
+export LDFLAGS="${LDFLAGS} -fno-lto"
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/h5py
 cp docs/licenses.rst %{buildroot}/usr/share/package-licenses/h5py/docs_licenses.rst
