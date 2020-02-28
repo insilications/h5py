@@ -4,7 +4,7 @@
 #
 Name     : h5py
 Version  : 2.10.0
-Release  : 46
+Release  : 47
 URL      : https://files.pythonhosted.org/packages/5f/97/a58afbcf40e8abecededd9512978b4e4915374e5b80049af082f49cebe9a/h5py-2.10.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/5f/97/a58afbcf40e8abecededd9512978b4e4915374e5b80049af082f49cebe9a/h5py-2.10.0.tar.gz
 Summary  : Read and write HDF5 files from Python
@@ -30,10 +30,17 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-.. image:: https://travis-ci.org/h5py/h5py.png
-:target: https://travis-ci.org/h5py/h5py
-.. image:: https://ci.appveyor.com/api/projects/status/h3iajp4d1myotprc/branch/master?svg=true
-:target: https://ci.appveyor.com/project/h5py/h5py/branch/master
+The h5py package provides both a high- and low-level interface to the HDF5
+library from Python. The low-level interface is intended to be a complete
+wrapping of the HDF5 API, while the high-level component supports  access to
+HDF5 files, datasets and groups using established Python and NumPy concepts.
+
+A strong emphasis on automatic conversion between Python (Numpy) datatypes and
+data structures and their HDF5 equivalents vastly simplifies the process of
+reading and writing data from Python.
+
+Supports HDF5 versions 1.8.4 and higher.  On Windows, HDF5 is included with
+the installer.
 
 %package license
 Summary: license components for the h5py package.
@@ -56,6 +63,7 @@ python components for the h5py package.
 Summary: python3 components for the h5py package.
 Group: Default
 Requires: python3-core
+Provides: pypi(h5py)
 
 %description python3
 python3 components for the h5py package.
@@ -63,13 +71,14 @@ python3 components for the h5py package.
 
 %prep
 %setup -q -n h5py-2.10.0
+cd %{_builddir}/h5py-2.10.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567884767
+export SOURCE_DATE_EPOCH=1582934031
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
@@ -83,8 +92,9 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/h5py
-cp licenses/license.txt %{buildroot}/usr/share/package-licenses/h5py/licenses_license.txt
-cp lzf/LICENSE.txt %{buildroot}/usr/share/package-licenses/h5py/lzf_LICENSE.txt
+cp %{_builddir}/h5py-2.10.0/LICENSE %{buildroot}/usr/share/package-licenses/h5py/75e30d84df76091f6aaa16a714073a72127a8158
+cp %{_builddir}/h5py-2.10.0/licenses/license.txt %{buildroot}/usr/share/package-licenses/h5py/0bd06351d2b2e5f425c31b1ef097c8f6079a5eb1
+cp %{_builddir}/h5py-2.10.0/lzf/LICENSE.txt %{buildroot}/usr/share/package-licenses/h5py/ed783081e442176401a5234bb9073175f3e956b9
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -95,8 +105,9 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/h5py/licenses_license.txt
-/usr/share/package-licenses/h5py/lzf_LICENSE.txt
+/usr/share/package-licenses/h5py/0bd06351d2b2e5f425c31b1ef097c8f6079a5eb1
+/usr/share/package-licenses/h5py/75e30d84df76091f6aaa16a714073a72127a8158
+/usr/share/package-licenses/h5py/ed783081e442176401a5234bb9073175f3e956b9
 
 %files python
 %defattr(-,root,root,-)
