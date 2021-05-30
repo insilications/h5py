@@ -6,6 +6,7 @@ hdf5
 hdf5-dev
 hdf5-lib
 hdf5-staticdev
+hdf5-openmpi
 numpy
 openblas
 pip
