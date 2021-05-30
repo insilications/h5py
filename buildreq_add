@@ -1,8 +1,23 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-python-pkgconfig
-numpy
+buildreq-distutils3
 Cython-python
-openblas
-six
+hdf5
 hdf5-dev
+hdf5-lib
+hdf5-staticdev
+numpy
+openblas
+pip
+pluggy
+Pygments
+py-python
+pytest
+python3-dev
+python3-staticdev
+python-pkgconfig
+PyYAML
+sed
+six
+tox
+virtualenv
