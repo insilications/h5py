@@ -1,5 +1,13 @@
 # This file contains recursive sources that require this package
 Keras
 Keras_Applications
+Keras_Preprocessing
 conda
 horovod
+horovod-python
+horovod-python3
+opencv
+opencv-dev
+opencv-staticdev
+tensorflow
+tensorflow-addons

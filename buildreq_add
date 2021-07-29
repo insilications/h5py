@@ -20,7 +20,6 @@ glibc-staticdev
 hdf5
 hdf5-dev
 hdf5-lib
-hdf5-openmpi
 hdf5-staticdev
 libedit
 libedit-dev

@@ -1,5 +1,5 @@
 PKG_NAME := h5py
-URL = https://files.pythonhosted.org/packages/ea/00/d0606cc0d6107a98f75b98367dc42917a67e3a7ec881636835f8e6987e6b/h5py-3.2.1.tar.gz
+URL = https://files.pythonhosted.org/packages/61/0f/e7e57c4b87d027d74acf75e0fc49aff8aca87d6ff7b2e655c183a714044d/h5py-3.3.0.tar.gz
 ARCHIVES = 
 ARCHIVES_GIT = 
 
